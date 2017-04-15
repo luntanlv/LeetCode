@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy element &apos;Answer.java&apos; to &apos;GoogleFuel/src&apos;&#x0D;&#x0A;- Original project: &apos;Even_Divide&apos;&#x0D;&#x0A;- Destination element: &apos;GoogleFuel/src&apos;&#x0D;&#x0A;- Original element: &apos;Answer.java&apos;" description="Copy compilation unit" destination="=GoogleFuel/src" element1="/src&lt;{Answer.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1490034075891" units="1" version="1.0"/>
-</session>
