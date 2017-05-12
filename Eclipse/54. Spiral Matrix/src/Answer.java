@@ -20,15 +20,6 @@ public class Answer {
         	return res;
         int n=matrix[0].length;
         
-//        if(n==1|| m==1){
-//        	for(int i=0; i<m; i++){
-//        		for(int j=0; j<n; j++){
-//        			res.add(matrix[i][j]);
-//        		}
-//        	}
-//        	return res;
-//        }
-        
         int i=0, j=0;
         int ixBorder = n-1, iyBorder= m-1, dxBorder=0, dyBorder=0;
         Direction dire = Direction.Ix;
