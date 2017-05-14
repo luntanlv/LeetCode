@@ -12,19 +12,17 @@ public class Answer {
     public int uniquePaths(int m, int n) {
     	//store data for a row
     	int[] dp = new int[n];
+    	dp[0]=1;
 
     	for(int i=0; i<m; i++){
     		for(int j=0; j<n; j++){
-    			if(i==0){
+    			if(i==0 && j==0){
     				dp[j]=1;
     				continue;
     			}
     			
-    			int res1 = dp[j], res2=0;
-    			if(j-1>=0)
-    				res2 = dp[j-1];
-    			
-    			dp[j]=res1+res2;
+    			if(j>0)
+    				dp[j] += dp[j-1];
     		}
     	}
     	return dp[n-1];
