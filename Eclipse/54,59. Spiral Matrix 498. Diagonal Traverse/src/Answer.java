@@ -69,6 +69,18 @@ public class Answer {
 
         return res;
     }
+
+    //59
+    public int[][] generateMatrix(int n) {
+        int[][] res = new int[3][3];
+        int i,j;
+        Direction dir = Direction.Ix;
+        
+        for(int val=0; val<n*n; val++){
+        	
+        }
+        
+    }    
     
     public int[] findDiagonalOrder(int[][] matrix) {
     	
