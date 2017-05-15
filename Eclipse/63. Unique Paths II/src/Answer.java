@@ -3,7 +3,7 @@ public class Answer {
 	public static void main(String [] args)
 	{
         Answer answer = new Answer();        
-        int res  = answer.uniquePaths(23, 12);
+        int res  = answer.uniquePaths(new int[][]{{0,1,0},{0,0,0},{1,0,0}});
         System.out.println(res);
 	}
 	
@@ -28,10 +28,6 @@ public class Answer {
     			
     			if(i==0 && j==0)
     				continue;    			
-    			else if(i==0 && j>0){
-    				dp[j]=dp[j-1];
-    				continue;
-    			}
     						
     			if(j>0)
     				dp[j] += dp[j-1];
