@@ -6,8 +6,8 @@ public class Answer {
 	public static void main(String [] args)
 	{
         Answer answer = new Answer();        
-        int res  = answer.minPathSum(new int[][]{{1,2,3},{4,5,6},{7,8,9}});
-        System.out.println(res);
+        //int res  = answer.minPathSum(new int[][]{{1,2,3},{4,5,6},{7,8,9}});
+        //System.out.println(res);
 	}
 	
     public List<Integer> preorderTraversal(TreeNode root) {
@@ -51,6 +51,8 @@ public class Answer {
         return res;
     }
     
+    //OTHER solution: https://discuss.leetcode.com/topic/2919/my-accepted-code-with-explaination-does-anyone-have-a-better-idea
+    
     //Using helper stack to tracking stacking visiting status
     //0:haven't visit left; 1:visted left
     public List<Integer> inorderTraversal2(TreeNode root) {
@@ -84,10 +86,31 @@ public class Answer {
         return res;
     }    
     
+    // Reverse the process of preorder
+    public List<Integer> postorderTraversal(TreeNode root) {
+        Stack<TreeNode> st = new Stack<TreeNode>();
+        List<Integer> res = new ArrayList<Integer>();
+        
+        TreeNode cur = root;
+        
+        while(cur!=null || !st.empty()){
+        	if(cur!= null){
+        		res.add(0, cur.val);
+        		st.push(cur);
+        		cur=cur.right;
+        	}
+        	else{
+        		cur= st.pop().left;
+        	}
+        }
+        
+        return res;
+        
+    }
     
     //Using helper stack to tracking stacking visiting status
     //0:haven't visit left; 1:visted left haven't visit right; 2: visted both
-    public List<Integer> postorderTraversal(TreeNode root) {
+    public List<Integer> postorderTraversal2(TreeNode root) {
         Stack<TreeNode> st = new Stack<TreeNode>();
         Stack<Integer> vst = new Stack<Integer>();
         List<Integer> res = new ArrayList<Integer>();
@@ -100,8 +123,29 @@ public class Answer {
         	int vcur = vst.pop();
         	if(cur==null){
         		continue;
+        	}
+        	
+        	//0:haven't visit left;
+        	if(vcur ==0){
+        		st.push(cur);
+        		vst.push(1);
+        		st.push(cur.left);
+        		vst.push(0);   		
+        	}
+        	//1:visted left haven't visit right;
+        	else if(vcur == 1){
+        		st.push(cur);
+        		vst.push(2);
+        		st.push(cur.right);
+        		vst.push(0);           		
+        	}
+        	//2:visted both left and right
+        	else if(vcur == 2){
+        		res.add(cur.val);         		
         	}        	
+        	
         }
+        return res;
     }
     
     /*
