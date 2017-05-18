@@ -15,6 +15,8 @@ public class Answer {
         
 	}
 	
+	
+	//not right
     public void setZeroes(int[][] matrix) {
     	int m=matrix.length;
     	if(m==0)
