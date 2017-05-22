@@ -17,6 +17,7 @@ public class Answer {
             
 	}
 	
+	//78
 	//Backtracking
 	public List<List<Integer>> subsets(int[] nums) {
 	    List<List<Integer>> list = new ArrayList<>();
@@ -34,8 +35,6 @@ public class Answer {
 	    }
 	}
     
-	
-
 	//
     public List<List<Integer>> subsets2(int[] nums) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
@@ -65,5 +64,65 @@ public class Answer {
             lenOfPreLevel = res.size();   
         }
         return res;
+    }
+    
+    
+    //90
+    //having dup
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> list = new ArrayList<List<Integer>>();
+        backtrackWithDup(list, new ArrayList<Integer>(), nums, 0);
+        return list;
+        
+    }
+    
+	private void backtrackWithDup(List<List<Integer>> list , List<Integer> tempList, int [] nums, int start){
+	    list.add(new ArrayList<>(tempList));
+	    
+	    int pre=0;
+	    for(int i = start; i < nums.length; i++){
+	    	if(i!=start && nums[i]==pre)
+	    		continue;
+	    	
+	    	pre=nums[i];
+	    	
+	        tempList.add(nums[i]);
+	        backtrackWithDup(list, tempList, nums, i + 1);
+	        tempList.remove(tempList.size() - 1);
+	    }
+	}
+	
+	
+    public List<List<Integer>> subsetsWithDup2(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        res.add(new ArrayList<Integer>());
+        
+    	int startOfPreLevel = 0;
+        int lenOfPreLevel = res.size();
+        
+        for(int i =0; i<nums.length; i++){
+            
+            for(int j=startOfPreLevel; j<lenOfPreLevel; j++){
+            	List<Integer> oneList = res.get(j);
+            	int lastNum = oneList.isEmpty()? Integer.MIN_VALUE: oneList.get(oneList.size()-1);       
+            	
+            	int preNum = Integer.MIN_VALUE;
+            	
+            	for( int num : nums){
+            		if(num>lastNum && num>preNum){
+            			preNum=num;
+            			List<Integer> newList = new ArrayList<Integer>(oneList);
+            			newList.add(num);
+            			res.add(newList);
+            		}
+            	}
+            	
+            }     
+            startOfPreLevel=lenOfPreLevel;
+            lenOfPreLevel = res.size();   
+        }
+        return res;        
     }
 }
