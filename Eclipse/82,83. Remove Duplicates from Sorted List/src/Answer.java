@@ -3,15 +3,8 @@ public class Answer {
 	
 	public static void main(String [] args)
 	{
-        Answer answer = new Answer();      
-        int[] input = new int[]{1,1,1,2,2,2,2,3,3};
-        //char[][] input = new char[][]{{'A'}};
-        int res = answer.removeDuplicates(input);
-        
-        System.out.println(res);
-        for(int num: input){
-        	 System.out.print(num+", ");
-        }
+        Answer answer = new Answer();             
+        System.out.println("");
             
 	}	
 	
