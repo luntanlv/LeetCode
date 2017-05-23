@@ -27,35 +27,19 @@ public class Answer {
     	else if((ipPart==4 && startIndex<s.length()) || startIndex>=s.length())
     		return;
     	
-    	int oneDig = Integer.valueOf(s.substring(startIndex, startIndex+1));
-    	if(oneDig>=0){
-        	String appendent = cur.length()==0? String.valueOf(oneDig) : "." + String.valueOf(oneDig);
-        	cur.append(appendent);
-        	backTracking(s, res, cur, startIndex+1,ipPart+1);
-        	cur.delete(cur.length()-appendent.length(), cur.length());    		
+    	//i: Num of dig
+    	for(int i=1; i<4; i++){
+    		if(startIndex+i-1 >= s.length())
+    			continue;
+    		int dig = Integer.valueOf(s.substring(startIndex, startIndex+i));
+    		if( (i==2 && dig<10) || (i==3 && (dig<100 || dig>255)))
+    			continue;
+    		
+    		String appendent = cur.length()==0? String.valueOf(dig) : "." + String.valueOf(dig);
+    		cur.append(appendent);
+    		backTracking(s, res, cur, startIndex+i,ipPart+1);
+    		cur.delete(cur.length()-appendent.length(), cur.length());    	
+    		
     	}
-
-    	if(startIndex+1<s.length()){
-        	int twoDig = Integer.valueOf(s.substring(startIndex, startIndex+2));
-        	if(twoDig>=10 && twoDig<=99){
-        		String appendent = cur.length()==0? String.valueOf(twoDig) :"." + String.valueOf(twoDig);
-            	cur.append(appendent);
-            	backTracking(s, res, cur, startIndex+2,ipPart+1);
-            	cur.delete(cur.length()-appendent.length(), cur.length());       		
-        	}    		
-    	}
-
- 	
-    	if(startIndex+2<s.length()){
-        	int threeDig = Integer.valueOf(s.substring(startIndex, startIndex+3));
-        	if(threeDig>=100 && threeDig<=255){
-        		String appendent = cur.length()==0? String.valueOf(threeDig) :"." + String.valueOf(threeDig);
-            	cur.append(appendent);
-            	backTracking(s, res, cur, startIndex+3,ipPart+1);
-            	cur.delete(cur.length()-appendent.length(), cur.length());  
-        	}    		
-    	}
-
-    	
     }
 }
