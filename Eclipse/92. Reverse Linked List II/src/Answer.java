@@ -2,11 +2,8 @@
 public class Answer {
 	public static void main(String [] args)
 	{
-        Answer answer = new Answer();      
-        int[] input = new int[]{6,7,1,2,4,5};
-        int res = answer.search33_sol2(input,9);
-        //boolean res = answer.search81(input,8);
-        System.out.println(res);           
+        Answer answer = new Answer();   
+        System.out.println();           
 	}
 	
     public ListNode reverseBetween(ListNode head, int m, int n) {
