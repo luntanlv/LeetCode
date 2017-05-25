@@ -2,12 +2,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import Answer.TreeNode;
+
 public class Answer {
 	public static void main(String [] args)
 	{
-        Answer answer = new Answer();        
-        //int res  = answer.minPathSum(new int[][]{{1,2,3},{4,5,6},{7,8,9}});
-        //System.out.println(res);
+        Answer answer = new Answer();
+        TreeNode root = answer.new TreeNode(2);
+        TreeNode left = answer.new TreeNode(1);
+        TreeNode right = answer.new TreeNode(3);
+        root.left=left;
+        root.right= right;
+        answer.recoverTree(root);
+        System.out.println(root);       
 	}
 	
     public List<Integer> preorderTraversal(TreeNode root) {
