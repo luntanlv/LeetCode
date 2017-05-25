@@ -28,7 +28,42 @@ public class Answer {
         }
         return res;
         
-    }	
+    }
+    
+    //Morris Preoder Traverdal
+    //O(1) space
+    //http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html
+    public List<Integer> preorderTraversal_Morris(TreeNode root) {
+        List<Integer> res = new ArrayList<Integer>();       
+        TreeNode cur = root;
+        
+        while(cur!=null){
+        	
+        	if(cur.left != null){
+        		TreeNode preNode = cur.left;
+        		while(preNode.right != null && preNode.right != cur){
+        			preNode = preNode.right;
+        		}
+        		
+        		if(preNode.right == null){
+        			res.add(cur.val);
+        			preNode.right = cur;
+        			cur=cur.left;
+        		}       			
+        		else{
+        			preNode.right = null;
+        			cur=cur.right;
+        		}
+        	}
+        	else{
+        		res.add(cur.val);
+        		cur = cur.right;
+        	}
+        }
+        return res;
+    }
+    
+    
 	
     public List<Integer> inorderTraversal(TreeNode root) {
         Stack<TreeNode> st = new Stack<TreeNode>();
@@ -84,7 +119,41 @@ public class Answer {
         	}
         }
         return res;
-    }    
+    }
+    
+    //Morris Inoder Traverdal
+    //O(1) space
+    //http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html
+    public List<Integer> inorderTraversal_Morris(TreeNode root) {
+        List<Integer> res = new ArrayList<Integer>();       
+        TreeNode cur = root;
+        
+        while(cur!=null){
+        	
+        	if(cur.left != null){
+        		TreeNode preNode = cur.left;
+        		while(preNode.right != null && preNode.right != cur){
+        			preNode = preNode.right;
+        		}
+        		
+        		if(preNode.right == null){
+        			preNode.right = cur;
+        			cur=cur.left;
+        		}       			
+        		else{
+        			preNode.right = null;
+        			res.add(cur.val);
+        			cur=cur.right;
+        		}
+        	}
+        	else{
+        		res.add(cur.val);
+        		cur = cur.right;
+        	}
+        }
+        return res;
+    }
+    
     
     // Reverse the process of preorder
     public List<Integer> postorderTraversal(TreeNode root) {
@@ -147,6 +216,13 @@ public class Answer {
         }
         return res;
     }
+    
+    //Morris Postoder Traverdal
+    //O(1) space
+    //http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html
+    public List<Integer> postorderTraversal_Morris(TreeNode root) {
+
+    }    
     
     /*
     public List<Integer> inorderTraversal(TreeNode root) {

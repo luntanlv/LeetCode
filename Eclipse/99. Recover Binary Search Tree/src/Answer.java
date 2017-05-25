@@ -1,7 +1,5 @@
 import java.util.Stack;
 
-import Answer.TreeNode;
-
 public class Answer {
 
     public class TreeNode {
