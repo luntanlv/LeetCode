@@ -19,26 +19,79 @@ public class Answer {
         TreeNode right = answer.new TreeNode(3);
         root.left=left;
         root.right= right;
-        answer.recoverTree(root);
-        System.out.println(root);       
+        List<List<Integer>> res = answer.levelOrder_dfs(root);
+        System.out.println(res);       
 	}
 	
+	//We can also do DFS
+	public List<List<Integer>> levelOrder_dfs(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        
+        levelHelper(res, root, 0);
+        return res;
+    }
+	
+	private void levelHelper(List<List<Integer>> res, TreeNode root, int height){
+		if(root == null)
+			return;
+		
+		if(height>=res.size())
+			res.add(new ArrayList<Integer>());
+		
+		res.get(height).add(root.val);
+		levelHelper(res,root.left,height+1);
+		levelHelper(res,root.right,height+1);
+	}
+	
+	//bfs
     public List<List<Integer>> levelOrder(TreeNode root) {
     	List<List<Integer>> res = new ArrayList<List<Integer>>();
-    	Queue<TreeNode> q = new LinkedList<TreeNode>();
+    	if(root == null)
+    		return res;
+    	
+    	Queue<TreeNode> q = new LinkedList<TreeNode>();			
     	q.add(root);
-    	q.add(null);
-    	List<Integer> oneLevel = new ArrayList<Integer>();
+    	
     	while(!q.isEmpty()){
-    		TreeNode cur = q.poll();
-    		if(cur == null){
-    			res.add(oneLevel);   			
-    		}
-    		else{
+    		Queue<TreeNode> tempQ = new LinkedList<TreeNode>();
+    		List<Integer> oneLevel = new ArrayList<Integer>();
+        	while(!q.isEmpty()){	
+        		TreeNode cur = q.poll();
     			oneLevel.add(cur.val);
-    			q.add(cur.left);
-    			q.add(cur.right);
-    		}
+    			
+    			if(cur.left != null)
+    				tempQ.add(cur.left);
+    			if(cur.right != null)
+    				tempQ.add(cur.right);
+        	}
+        	q=tempQ;
+        	res.add(oneLevel);
     	}
+    	return res;
+    }
+    
+    public List<List<Integer>> levelOrder2(TreeNode root) {
+    	List<List<Integer>> res = new LinkedList<List<Integer>>();
+        if(root == null) 
+        	return res;
+        
+        Queue<TreeNode> q = new LinkedList<TreeNode>();      
+        q.offer(root);
+        while(!q.isEmpty()){
+            int levelNum = q.size();
+            List<Integer> oneLevel = new LinkedList<Integer>();
+            for(int i=0; i<levelNum; i++) {
+            	TreeNode cur = q.poll();
+            	
+                if(cur.left != null) 
+                	q.offer(cur.left);
+                if(cur.right != null) 
+                	q.offer(cur.right);
+                
+                oneLevel.add(cur.val);
+            }
+            res.add(oneLevel);
+        }
+        return res;
     }
 }
