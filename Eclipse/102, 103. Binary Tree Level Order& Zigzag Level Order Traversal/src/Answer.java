@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Answer {
     public class TreeNode {
@@ -19,7 +20,7 @@ public class Answer {
         TreeNode right = answer.new TreeNode(3);
         root.left=left;
         root.right= right;
-        List<List<Integer>> res = answer.levelOrder_dfs(root);
+        List<List<Integer>> res = answer.zigzagLevelOrder(root);
         System.out.println(res);       
 	}
 	
@@ -93,5 +94,42 @@ public class Answer {
             res.add(oneLevel);
         }
         return res;
+    }
+    
+    //103  Binary Tree Zigzag Level Order Traversal
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+    	List<List<Integer>> res = new ArrayList<List<Integer>>();
+    	if(root == null)
+    		return res;
+    	
+    	Stack<TreeNode> st = new Stack<TreeNode>();			
+    	st.push(root);
+    	int level =0;
+    	
+    	while(!st.isEmpty()){
+    		Stack<TreeNode> tempSt = new Stack<TreeNode>();		
+    		List<Integer> oneLevel = new ArrayList<Integer>();
+    		level++;
+        	while(!st.isEmpty()){	
+        		TreeNode cur = st.pop();
+    			oneLevel.add(cur.val);
+    			
+    			if(level%2==1){
+        			if(cur.left != null)
+        				tempSt.push(cur.left);
+        			if(cur.right != null)
+        				tempSt.push(cur.right);
+    			}
+    			else{
+        			if(cur.right != null)
+        				tempSt.push(cur.right);
+        			if(cur.left != null)
+        				tempSt.push(cur.left);
+    			}
+        	}
+        	st=tempSt;
+        	res.add(oneLevel);
+    	}
+    	return res;
     }
 }
