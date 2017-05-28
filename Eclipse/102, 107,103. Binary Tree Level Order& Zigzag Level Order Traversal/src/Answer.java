@@ -24,6 +24,8 @@ public class Answer {
         System.out.println(res);       
 	}
 	
+	
+	//102
 	//We can also do DFS
 	public List<List<Integer>> levelOrder_dfs(TreeNode root) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
@@ -95,6 +97,55 @@ public class Answer {
         }
         return res;
     }
+    
+    //107
+    //BFS
+    public List<List<Integer>> levelOrderBottom_bfs_107(TreeNode root) {
+    	List<List<Integer>> res = new LinkedList<List<Integer>>();
+        if(root == null) 
+        	return res;
+        
+        Queue<TreeNode> q = new LinkedList<TreeNode>();      
+        q.offer(root);
+        while(!q.isEmpty()){
+            int levelNum = q.size();
+            List<Integer> oneLevel = new LinkedList<Integer>();
+            for(int i=0; i<levelNum; i++) {
+            	TreeNode cur = q.poll();
+            	
+                if(cur.left != null) 
+                	q.offer(cur.left);
+                if(cur.right != null) 
+                	q.offer(cur.right);
+                
+                oneLevel.add(cur.val);
+            }
+            res.add(0, oneLevel);
+        }
+        return res;
+    }
+    
+    
+    //DFS
+	public List<List<Integer>> levelOrderBottom_dfs_107(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        
+        levelHelper_107(res, root, 0);
+        return res;
+    }
+	
+	private void levelHelper_107(List<List<Integer>> res, TreeNode root, int height){
+		if(root == null)
+			return;
+		
+		if(height>=res.size())
+			res.add(0, new ArrayList<Integer>());
+		
+		res.get(res.size()-height-1).add(root.val);
+		levelHelper_107(res,root.left,height+1);
+		levelHelper_107(res,root.right,height+1);
+	}
+	
     
     //103  Binary Tree Zigzag Level Order Traversal
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {

@@ -11,7 +11,7 @@ public class Answer {
         System.out.println(res);       
 	}
 	
-	//Use dp to same time
+	//Use dp to save time
 	//https://discuss.leetcode.com/topic/2940/java-solution-with-dp
 	
 	//just recursion
