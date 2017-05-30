@@ -18,11 +18,11 @@ public class Answer {
         TreeLinkNode right = answer.new TreeLinkNode(3);
         root.left=left;
         root.right= right;
-        answer.connect(root);
+        answer.connect_117(root);
         System.out.println(root);       
 	}
 	
-	
+	//116
 	//Not O(1) space
     public void connect(TreeLinkNode root) {
     	if(root==null)
@@ -49,8 +49,9 @@ public class Answer {
         }
     }
     
+    //16
     //O(1) space
-    public void connect_2(TreeLinkNode root) {
+    public void connect_116_2(TreeLinkNode root) {
     	if(root==null)
     		return;
     	
@@ -68,5 +69,53 @@ public class Answer {
         	}
         	levelStarting = levelStarting.left;
     	}	
+    }
+    
+    //117
+    public void connect_117(TreeLinkNode root) {
+    	TreeLinkNode levelStarting = root;
+    	
+    	while(levelStarting != null){
+        	TreeLinkNode cur = levelStarting;
+        	int offset =1;
+        	while(cur!=null){
+        		
+        		if(cur.left != null){
+        			cur.left.next = getNext(levelStarting, offset);
+        			offset++;
+        		}      			
+        		
+        		if(cur.right !=null){
+        			cur.right.next = getNext(levelStarting, offset);
+        			offset++;
+        		}
+
+        		cur=cur.next;
+        	}
+        	levelStarting = getNext(levelStarting, 0);
+    	}	
+    }
+    
+    private TreeLinkNode getNext(TreeLinkNode root, int offset){
+    	TreeLinkNode next = null;
+    	TreeLinkNode cur = root;
+    	while(cur!= null){
+    		if(cur.left != null){  			
+    			if(offset ==0){
+        			next=cur.left;
+        			break;
+    			}
+    			offset--;
+    		}
+    		else if(cur.right != null){
+    			if(offset ==0){
+        			next = cur.right;
+        			break;
+    			}    			
+    			offset--;
+    		}
+    		cur=cur.next;
+    	}
+    	return next;
     }
 }
