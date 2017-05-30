@@ -107,7 +107,7 @@ public class Answer {
     			}
     			offset--;
     		}
-    		else if(cur.right != null){
+    		if(cur.right != null){
     			if(offset ==0){
         			next = cur.right;
         			break;
