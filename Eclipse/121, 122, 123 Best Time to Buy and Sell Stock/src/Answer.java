@@ -44,6 +44,9 @@ public class Answer {
     //DP
     //https://discuss.leetcode.com/topic/4766/a-clean-dp-solution-which-generalizes-to-k-transactions
     
+    //two traversal
+    //https://discuss.leetcode.com/topic/7028/java-solution-with-just-two-traverses
+    
     
     //123
     //same ideas as 121
