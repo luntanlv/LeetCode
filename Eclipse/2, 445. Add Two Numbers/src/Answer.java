@@ -66,5 +66,9 @@ public class Answer {
         
     }
     
+    private int helper(ListNode l1, ListNode l2){
+    	
+    }
+    
     
 }
