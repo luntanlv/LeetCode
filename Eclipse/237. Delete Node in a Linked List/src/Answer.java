@@ -17,7 +17,7 @@ public class Answer {
         ListNode node1 = answer.new ListNode(2);
         head.next = node1;
         answer.deleteNode(head);
-        System.out.println(head);       
+        System.out.println(head);  
 	}
 	
     public void deleteNode(ListNode node) {
