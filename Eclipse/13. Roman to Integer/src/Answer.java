@@ -9,6 +9,7 @@ public class Answer {
         System.out.println(res);       
 	}
 	
+	//the first smaller than the next is only happen in 4(IV) and 9(IX)... there is no things like IIV
     public int romanToInt(String s) {
         HashMap<Character, Integer> dic = new HashMap<>();
         dic.put('I', 1);
@@ -38,6 +39,8 @@ public class Answer {
         return sum;
     }
     
+    //The reason to reserve is that XIX, I belong to second X in Roman word, instead of first one. 
+    //Which means the second X has higher priority than the first, so reverse will handle this automatically
     public int romanToInt_reverse(String s) {
         HashMap<Character, Integer> dic = new HashMap<>();
         dic.put('I', 1);
