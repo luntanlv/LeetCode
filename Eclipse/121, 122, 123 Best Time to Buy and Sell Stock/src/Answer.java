@@ -24,6 +24,15 @@ public class Answer {
         }
         return maxprofit;
     }
+    //simple case of 123,just buy1 sell one
+    public int maxProfit_121(int[] prices) {
+		int sell1 = 0, buy1 = Integer.MIN_VALUE;
+		for (int i = 0; i < prices.length; i++) {
+			buy1 = Math.max(buy1, -prices[i]);
+			sell1 = Math.max(sell1, buy1 + prices[i]);
+		}
+		return sell1;
+	}   
 
     
     //122: multiple sell and buy
@@ -43,6 +52,29 @@ public class Answer {
     //123
     //DP
     //https://discuss.leetcode.com/topic/4766/a-clean-dp-solution-which-generalizes-to-k-transactions
+    // I got this from sell1 buy1 sell2 buy2 solution, I make it k
+    public int maxProfit_Dp(int[] prices) {
+    	int n = prices.length;
+    	int knum =2;
+    	
+    	//maxMoney_buy[k-1] Store the max money in the pocket after kth buy, it store previous value while i from 0 to n
+    	int[] maxMoney_buy = new int[knum];
+    	//maxMoney_sell[k-1] Store the max money in the pocket after kth sell
+    	int[] maxMoney_sell = new int[knum];
+    	
+		for(int k=0; k<knum; k++){
+	    	maxMoney_buy[k]= Integer.MIN_VALUE;
+	    	maxMoney_sell[k] = 0;
+		} 	
+
+		for (int i = 0; i < n; i++) {
+			for(int k=0; k<knum; k++){
+				maxMoney_buy[k] = Math.max(maxMoney_buy[k], k>0? maxMoney_sell[k-1] - prices[i] : - prices[i]);
+				maxMoney_sell[k] = Math.max(maxMoney_sell[k], maxMoney_buy[k] + prices[i]);
+			}
+		}
+		return maxMoney_sell[knum-1];
+	}  
     
     
     //two traversal
