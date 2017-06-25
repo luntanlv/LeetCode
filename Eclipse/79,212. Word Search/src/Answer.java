@@ -12,6 +12,7 @@ public class Answer {
             
 	}
 	
+//---------------------------- 79 ----------------------------------------------------------------------
     public boolean exist(char[][] board, String word) {
     	if(board.length==0 || board[0].length==0)
     		return word.length()==0? true:false;
@@ -51,4 +52,10 @@ public class Answer {
     	
     	return res;
     }
+    
+  //---------------------------- 212 ----------------------------------------------------------------------
+  //Using Trie 208
+  //Straight forward: https://discuss.leetcode.com/topic/14256/my-simple-and-clean-java-code-using-dfs-and-trie
+  //Optimize: https://discuss.leetcode.com/topic/33246/java-15ms-easiest-solution-100-00
+    
 }
