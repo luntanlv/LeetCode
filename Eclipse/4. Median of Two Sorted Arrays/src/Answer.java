@@ -7,8 +7,7 @@ public class Answer {
         int[] nums2 = new int[]{3,4,5};
         double res = answer.findMedianSortedArrays(nums2, nums1);
         
-        System.out.println(res);
-            
+        System.out.println(res);    
 	}
 	
 	//"if we cut the sorted array to two halves of EQUAL LENGTHS, then
