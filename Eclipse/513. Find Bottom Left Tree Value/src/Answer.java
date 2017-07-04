@@ -17,7 +17,7 @@ public class Answer {
         TreeNode right = answer.new TreeNode(3);
         root.left=left;
         root.right= right;
-        int res = answer.largestBSTSubtree(root);
+        int res = answer.findBottomLeftValue(root);
         System.out.println(res);       
 	}
 	
@@ -40,4 +40,27 @@ public class Answer {
         }
         return cur.val;
     }
+    
+    //DFS
+    public int findBottomLeftValue_dfs(TreeNode root) {
+        if(root==null)
+            return 0;
+        int[] result = {root.val, 0};
+        helper(root, 0, result);
+        return result[0];
+    }
+    
+    private void helper(TreeNode root, int row, int[] result/*result-val, lowest row*/ ){
+        if(root==null)
+            return;
+        
+        if(row > result[1]){
+            result[0] = root.val;
+            result[1] = row;
+        }
+        
+        helper(root.left, row+1, result); //no need to care about the cols of a row, as here we always go to left first, the left-most node of a row will always be captured first 
+        helper(root.right, row+1, result);
+    }
+
 }
