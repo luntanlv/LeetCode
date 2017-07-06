@@ -12,8 +12,10 @@ public class Answer {
 	}
 	
 	//I saw the solution
+	//https://leetcode.com/articles/task-scheduler/
+	
 	//Not easy to undertand regards to how to tracking cooling time of tasks
-	//!!!!!!/Chose priority queue solution
+	//!!!!!!/Choose Calculating Idle slots [Accepted]
 	//Now, the task picked up first after the sorting, 
 	//will either be the first task picked up in the last iteration(which will now be picked after its cooling time has been finished)
 	//
@@ -41,5 +43,18 @@ public class Answer {
             Arrays.sort(map);
         }
         return time;
+    }
+    
+    //Calculating Idle slots [Accepted]
+    public int leastInterval_better(char[] tasks, int n) {
+        int[] map = new int[26];
+        for (char c: tasks)
+            map[c - 'A']++;
+        Arrays.sort(map);
+        int max_val = map[25] - 1, idle_slots = max_val * n;
+        for (int i = 24; i >= 0 && map[i] > 0; i--) {
+            idle_slots -= Math.min(map[i], max_val);
+        }
+        return idle_slots > 0 ? idle_slots + tasks.length : tasks.length;
     }
 }
