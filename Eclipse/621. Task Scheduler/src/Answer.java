@@ -53,6 +53,8 @@ public class Answer {
         Arrays.sort(map);
         int max_val = map[25] - 1, idle_slots = max_val * n;
         for (int i = 24; i >= 0 && map[i] > 0; i--) {
+        	//This Math.min is important, it guarantee that tasks add to fill the idle slot won't violate the cooling time. 
+        	//The max num of the same tasks to fill the idle slot is max_val, otherwise it will violate cooling time
             idle_slots -= Math.min(map[i], max_val);
         }
         return idle_slots > 0 ? idle_slots + tasks.length : tasks.length;
