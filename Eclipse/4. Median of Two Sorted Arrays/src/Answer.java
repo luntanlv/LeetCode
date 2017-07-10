@@ -29,10 +29,10 @@ public class Answer {
 	
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int l1 = nums1.length, l2 = nums2.length;
-        //divide nums1 at i (before num at index i), i:[0, l1], leftPart have i elements (0~i-1), 
+        //divide nums1 at i (before num at index i), i:[0, l1-1], leftPart have i elements (0~i-1), 
         //the largest num in leftPart is nums1[i-1], the samllest num in rightPart nums1[i]
         //
-        //divide nums2 at j (before num at index j), j:[0, l2], leftPart have j element (0~j-1)
+        //divide nums2 at j (before num at index j), j:[0, l2-1], leftPart have j element (0~j-1)
         //the largest num in leftPart is nums2[j-1], the samllest num in rightPart nums2[j]
         //
         //When we divide i, j properly leftPart.length = i+j = (l1+l2+1)/2, 
