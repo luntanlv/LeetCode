@@ -5,7 +5,7 @@ public class Answer {
 	public static void main(String [] args)
 	{
         Answer answer = new Answer();
-        int res = answer.longestValidParentheses("()(())");
+        int res = answer.longestValidParentheses(")()())");
         System.out.println(res);       
 	}
 	
@@ -42,24 +42,72 @@ public class Answer {
     	return res;
     }
     
-    //I saw the solution
-    //Stack
+    //JD's solution
+    //Stack1
     public int longestValidParentheses(String s) {
-        Stack<Integer> st = new Stack<>();
+        Stack<Character> charSt = new Stack<>();
+        Stack<Integer> indexSt = new Stack<>();
+        //Starting point
+        indexSt.push(-1);
+        
         char[] sChr = s.toCharArray();
         int res=0;
         for(int i=0; i<sChr.length; i++){
-        	if(sChr[i]=='(')
-        		st.push(i);
-        	//)
-        	else{
-        		if(!st.isEmpty()){
-        			cur=0;
-        		}
-        			
+        	//got a valid pair
+        	if(!charSt.isEmpty() && charSt.peek()=='(' && sChr[i]==')'){
+        		charSt.pop();
+        		indexSt.pop();
         	}
-        	res = Math.max(res, cur);
+        	else{
+        		charSt.push(sChr[i]);
+        		indexSt.push(i);
+        	}
+        	
         }
+        
+        //what's left in the stack is invalid character and its index
+        //so the valid length is between these index
+        int end = sChr.length;
+        while(!indexSt.isEmpty()){
+        	int start = indexSt.pop();
+        	int len = end-start-1;
+        	res = Math.max(res, len);
+        	end = start;
+        }
+        
         return res;
     }
+    
+    //I saw the solution
+    //Two scan, left and right
+    public int longestValidParentheses_lr(String s) {
+        int left = 0, right = 0, maxlength = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                left++;
+            } else {
+                right++;
+            }
+            if (left == right) {
+                maxlength = Math.max(maxlength, 2 * right);
+            } else if (right >= left) {
+                left = right = 0;
+            }
+        }
+        left = right = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == '(') {
+                left++;
+            } else {
+                right++;
+            }
+            if (left == right) {
+                maxlength = Math.max(maxlength, 2 * left);
+            } else if (left >= right) {
+                left = right = 0;
+            }
+        }
+        return maxlength;
+    }
+    
 }
