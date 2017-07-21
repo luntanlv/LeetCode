@@ -11,6 +11,7 @@ public class Answer {
 	
 	//39
     public List<List<Integer>> combinationSum39(int[] candidates, int target) {
+    	//We need sort and currentIndex to prevent dup result
     	Arrays.sort(candidates);
     	List<List<Integer>> res = new ArrayList<>();
     	helper39(candidates, target, new ArrayList<Integer>(), 0, 0, res);
