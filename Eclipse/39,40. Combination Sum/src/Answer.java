@@ -36,7 +36,7 @@ public class Answer {
     
     //40
     public List<List<Integer>> combinationSum40(int[] candidates, int target) {
-    	//Arrays.sort(candidates);
+    	Arrays.sort(candidates);
     	List<List<Integer>> res = new ArrayList<>();
     	helper40(candidates, target, new ArrayList<Integer>(), 0, 0, res);
     	return res;
