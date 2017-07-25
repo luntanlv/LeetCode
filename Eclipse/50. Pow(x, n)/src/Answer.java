@@ -3,11 +3,36 @@ public class Answer {
 	public static void main(String [] args)
 	{
         Answer answer = new Answer();
-        double res = answer.myPow3(0.00001, 2147483647);
+        double res = answer.myPow(0.00001, 2147483647);
+        double res2 = answer.myPow3(0.00001, 2147483647);
         System.out.println(res);
 	}
 	
+	//My solution
     public double myPow(double x, int n) {
+        long ln = n;
+    	
+        if(ln==0)
+            return 1;
+        else if(ln<0){
+        	x=1/x;
+        	ln=-ln;
+        }
+        
+        double temp= x, res=1;
+        
+        while(ln>0){
+        	if((1&ln)==1){
+        		res *=temp;
+        	}
+        	ln=ln>>1;
+           	temp*=temp;
+        }
+        
+        return res;
+    }
+	
+    public double myPow1(double x, int n) {
         if(n==0)
             return 1;
         else if(n<0){
