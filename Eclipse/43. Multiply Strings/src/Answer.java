@@ -5,13 +5,45 @@ public class Answer {
 	public static void main(String [] args)
 	{
         Answer answer = new Answer();
-        String res = answer.multiply("00","990");
+        String res = answer.multiply("123","456");
         System.out.println(res);
 	}
 	
+	//I saw the solution
+    public String multiply(String num1, String num2) {
+        char[] c1 = num1.toCharArray();
+        char[] c2 = num2.toCharArray();
+        
+        int[] res = new int[c1.length+c2.length];
+        
+        for(int i=c1.length-1; i>=0; i--){
+        	for(int j=c2.length-1; j>=0; j--){
+        		int ri=c1.length-1-i;
+        		int rj=c2.length-1-j;
+        		
+        		int mul=(c1[i]-'0') * (c2[j]-'0');
+        		int sum = mul+res[ri+rj];
+        		
+        		res[ri+rj] = sum%10;
+        		res[ri+rj+1] += sum/10;
+        		
+        	}
+        }
+        
+        StringBuilder sb= new StringBuilder();
+        int sum=0;
+        for(int i=res.length-1; i>=0; i--){
+        	sum=10*sum+res[i];
+        	if(sum!=0)
+        		sb.append((char)('0'+res[i]));
+        }
+        
+        return sb.length()==0? "0":sb.toString();
+        
+    }
 	
 	//LeetCode have better solution
-    public String multiply(String num1, String num2) {
+    public String multiply_notGood(String num1, String num2) {
     	StringBuilder res = new StringBuilder();
         for(int i=num1.length()-1; i>=0 ;i--){
         	int a = num1.charAt(i)-'0';
