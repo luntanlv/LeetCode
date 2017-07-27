@@ -9,7 +9,7 @@ public class Answer {
         System.out.println(res);    
 	}
 	
-	
+	//51
 	//I saw the solution
     public List<List<String>> solveNQueens(int n) {
     	char[][] curb = new char[n][n];
@@ -65,5 +65,12 @@ public class Answer {
     			return false;
     	}
     	return true;
+    }
+    
+    //52
+    //I saw the solution
+    //https://discuss.leetcode.com/topic/5962/accepted-java-solution
+    public int totalNQueens(int n) {
+        
     }
 }
