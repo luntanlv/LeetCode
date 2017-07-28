@@ -52,6 +52,8 @@ public class Answer {
     //253
     //A faster solution, but little bit hard to understand
     //https://discuss.leetcode.com/topic/35253/explanation-of-super-easy-java-solution-beats-98-8-from-pinkfloyda
+    //solution 3, a little bit easier to understand
+    //https://leetcode.com/problems/meeting-rooms-ii/tabs/discuss
     public int minMeetingRooms(Interval[] intervals) {
     	Arrays.sort(intervals, (a,b)-> a.start-b.start);
     	PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
