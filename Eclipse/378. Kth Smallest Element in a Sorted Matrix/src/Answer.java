@@ -51,7 +51,7 @@ public class Answer {
         return -1;
     }
     
-    //binary search
+    //binary search, it is hard to write it right
     //kind of quick sort idea
     /*
      * We are done here, but let's think about this problem in another way:
@@ -68,7 +68,7 @@ public class Answer {
      */
     
     public int kthSmallest_bs(int[][] matrix, int k) {
-        int lo = matrix[0][0], hi = matrix[matrix.length - 1][matrix[0].length - 1] + 1;//[lo, hi)
+        int lo = matrix[0][0], hi = matrix[matrix.length - 1][matrix[0].length - 1];
         while(lo < hi) {
             int mid = lo + (hi - lo) / 2;
             //count: num of val which is <= mid
@@ -77,9 +77,24 @@ public class Answer {
                 while(j >= 0 && matrix[i][j] > mid) j--;
                 count += (j + 1);
             }
-            if(count < k) lo = mid + 1;
-            else hi = mid;
+            if(count < k)
+            	lo = mid + 1;
+            //https://discuss.leetcode.com/topic/52865/my-solution-using-binary-search-in-c/32
+            //
+            //if mid is the val from matrix,
+            // 1. if count>k and if there are more than one val equal to mid
+            // 		for example3 , k=8, count =9, two val = mid,
+            // 		so mid is 8th and 9th smallest, mid is the answer 
+            //
+            //2. if count ==k 
+            //	 since count is num of val <= mid, mid is the kth value in the matrix
+            //	 so we should keep mid
+            else
+            	hi = mid;
         }
+        // the reason why left is the val in the matrix
+        // Because the loop invariant is left<=Solution<=right. The moment it quits the loop, we also know another condition is true: left>=right.
+        //left<=Solution<=right and left>=right means left==Solution==right.
         return lo;
     }
     
