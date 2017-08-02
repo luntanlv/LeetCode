@@ -6,7 +6,7 @@ public class Answer {
 	{
         Answer answer = new Answer();      
         
-        List<List<Integer>> res = answer.combine(20,16);
+        List<List<Integer>> res = answer.combine(4,2);
         
         for(List<Integer> oneList: res){
         	for(int val: oneList)
@@ -18,6 +18,24 @@ public class Answer {
 	}
 	
     public List<List<Integer>> combine(int n, int k) {
+    	List<List<Integer>> res = new ArrayList<>();
+    	backtracking(res, new ArrayList<Integer>(), 1, n, k);
+    	return res;
+    }
+    
+    private void backtracking(List<List<Integer>> res, List<Integer> cur, int start, int n, int k){
+    	if(cur.size()==k)
+    		res.add(new ArrayList<Integer>(cur));
+    	
+    	for(int i=start; i<=n; i++){
+			cur.add(i);
+			backtracking(res, cur, i+1, n, k);
+			cur.remove(cur.size()-1);
+    	}
+    }
+	
+	//Time Limit Exceeded
+    public List<List<Integer>> combine_TLE(int n, int k) {
     	List<List<Integer>> res = new ArrayList<List<Integer>> ();
     	
     	for(int i=0; i<k; i++){
