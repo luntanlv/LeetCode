@@ -6,8 +6,8 @@ public class Answer {
 	public static void main(String [] args)
 	{
         Answer answer = new Answer();      
-        int[] input = new int[]{1,2,3};
-        List<List<Integer>> res = answer.subsets(input);
+        int[] input = new int[]{1,2,2};
+        List<List<Integer>> res = answer.subsetsWithDup(input);
         
         for(List<Integer> oneList: res){
         	for(int val: oneList)
@@ -92,7 +92,28 @@ public class Answer {
     
     //90
     //having dup
+    //second time
     public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> res = new ArrayList<>();
+        backTracking(res, new ArrayList<Integer>(), 0, nums);
+        return res;        
+    }
+    
+    private void backTracking(List<List<Integer>> res, List<Integer> cur, int start, int[] nums){
+        res.add(new ArrayList<Integer>(cur));
+        
+        for(int i=start; i<nums.length; i++){
+            if(i>start && nums[i]==nums[i-1])
+                continue;
+            cur.add(nums[i]);
+            backTracking(res, cur, i+1, nums);
+            cur.remove(cur.size()-1);
+        }
+    }
+    
+    //first time
+    public List<List<Integer>> subsetsWithDup_first(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> list = new ArrayList<List<Integer>>();
         backtrackWithDup(list, new ArrayList<Integer>(), nums, 0);
