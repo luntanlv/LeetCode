@@ -22,7 +22,6 @@ public class Answer {
 	    return i;
 	}	
 	
-	//can do without sorted array
     public int removeDuplicates2(int[] nums) {
         if(nums.length==0)
         	return 0;
