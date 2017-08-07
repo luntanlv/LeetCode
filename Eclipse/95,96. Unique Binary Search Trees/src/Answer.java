@@ -13,7 +13,6 @@ public class Answer {
 	
 	//Use dp to save time
 	//https://discuss.leetcode.com/topic/2940/java-solution-with-dp
-	
 	//just recursion
     public List<TreeNode> generateTrees(int n) {
     	if(n==0)
@@ -52,13 +51,26 @@ public class Answer {
     }
     
     //96
+    //https://leetcode.com/problems/unique-binary-search-trees/discuss/
+	/*
+	 * To construct an unique BST out of the entire sequence [1, 2, 3, 4, 5, 6, 7] with 3 as the root, 
+	 * which is to say, we need to construct an unique BST out of its left subsequence [1, 2] 
+	 * and another BST out of the right subsequence [4, 5, 6, 7], 
+	 * and then combine them together. 
+	 * 
+	 * The tricky part is that we could consider the number of unique BST out of sequence [1,2] as dp(2), 
+	 * and the number of of unique BST out of sequence [4, 5, 6, 7] as dp(4). Therefore, F(3,7) = dp(2) * dp(4).
+	 */
     public int numTrees(int n) {
+    	//dp[i]:the number of unique BST for a sequence of length i.
         int[] dp = new int[n+1];
         dp[0] = 1;
         dp[1] = 1;
         
         for(int i=2; i<=n; i++){
+        	//for each length i, pick index j as root
         	for(int j=0; j<i; j++){
+        		//left subtree j nodes, right subtree i-j-1 nodes
         		dp[i]+=dp[j] * dp[i-j-1];
         	}
         }
