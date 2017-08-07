@@ -13,8 +13,8 @@ public class Answer {
 	
 	//Use dp to save time
 	//https://discuss.leetcode.com/topic/2940/java-solution-with-dp
-	//just recursion
-    public List<TreeNode> generateTrees(int n) {
+	//just recursion here
+    public List<TreeNode> generateTrees_re(int n) {
     	if(n==0)
     		return new ArrayList<TreeNode>();
     	
@@ -47,8 +47,53 @@ public class Answer {
     	}
     	
     	return res;
-
     }
+    
+    //dp
+    public List<TreeNode> generateTrees(int n) {
+    	//dp[i]:the list of root of BST for a sequence of length i.
+    	List<TreeNode>[] dp = new ArrayList[n + 1];
+    	
+    	dp[0] = new ArrayList<TreeNode>();
+    	if(n==0)
+    		return dp[0];  	
+    	dp[0].add(null);
+
+    	for(int i=1; i<=n; i++){
+    		dp[i] = new ArrayList<TreeNode>();
+    		//for each length i, pick j+1 as root
+    		for(int j=0; j<i; j++){
+    			//left subtree j nodes, right subtree i-j-1 nodes
+    			for(TreeNode nodeL : dp[j]){
+    				for(TreeNode nodeR: dp[i-j-1]){
+    					TreeNode newRoot = new TreeNode(j+1);
+    					newRoot.left = clone(nodeL, 0);
+    					newRoot.right = clone(nodeR, j+1);
+    					dp[i].add(newRoot);
+    				}
+    			}    			
+    		}
+    		
+    	}
+    	
+    	return dp[n];
+    	
+    }
+    
+    //clone the tree structure, with val=baseval + offset
+    private TreeNode clone(TreeNode root, int offset){
+    	if(root == null)
+    		return null;
+    	
+    	TreeNode newRoot = new TreeNode(root.val + offset);
+    	newRoot.left = clone(root.left, offset);
+    	newRoot.right = clone(root.right, offset);
+    	
+    	return newRoot;
+    }
+    
+    
+    
     
     //96
     //https://leetcode.com/problems/unique-binary-search-trees/discuss/
@@ -68,7 +113,7 @@ public class Answer {
         dp[1] = 1;
         
         for(int i=2; i<=n; i++){
-        	//for each length i, pick index j as root
+        	//for each length i, pick j+1 as root
         	for(int j=0; j<i; j++){
         		//left subtree j nodes, right subtree i-j-1 nodes
         		dp[i]+=dp[j] * dp[i-j-1];
