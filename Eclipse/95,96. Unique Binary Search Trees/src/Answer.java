@@ -110,9 +110,8 @@ public class Answer {
     	//dp[i]:the number of unique BST for a sequence of length i.
         int[] dp = new int[n+1];
         dp[0] = 1;
-        dp[1] = 1;
         
-        for(int i=2; i<=n; i++){
+        for(int i=1; i<=n; i++){
         	//for each length i, pick j+1 as root
         	for(int j=0; j<i; j++){
         		//left subtree j nodes, right subtree i-j-1 nodes
