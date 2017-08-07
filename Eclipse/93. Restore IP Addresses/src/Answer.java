@@ -30,7 +30,7 @@ public class Answer {
     	//i: Num of dig
     	for(int i=1; i<4; i++){
     		if(startIndex+i-1 >= s.length())
-    			continue;
+    			break;
     		int dig = Integer.valueOf(s.substring(startIndex, startIndex+i));
     		if( (i==2 && dig<10) || (i==3 && (dig<100 || dig>255)))
     			continue;

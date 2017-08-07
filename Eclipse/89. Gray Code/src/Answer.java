@@ -3,6 +3,8 @@ import java.util.List;
 
 public class Answer {
 	
+	//https://discuss.leetcode.com/topic/608/what-if-i-have-no-knowledge-over-gray-code-before/3
+	
 	//http://www.jiuzhang.com/solutions/gray-code/
 	//http://www.cnblogs.com/yuzhangcmu/p/4121804.html
 	public static void main(String [] args)
