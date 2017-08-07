@@ -49,6 +49,7 @@ public class Answer {
     }
     
     //dp, left and right scan
+    //	Time Limit Exceeded
     public int largestRectangleArea(int[] heights) {
         if(heights.length==0)
         	return 0;
