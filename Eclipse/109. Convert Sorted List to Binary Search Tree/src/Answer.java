@@ -32,7 +32,52 @@ public class Answer {
         System.out.println(res);       
 	}    
     
-	public TreeNode sortedListToBST(ListNode head) {
+	
+	//n
+	//inorder reconstruction
+    public TreeNode sortedListToBST(ListNode head) {
+    	int len =0; 
+    	ListNode cur = head;
+    	while(cur!=null){
+    		len++;
+    		cur=cur.next;
+    	}
+    	
+    	ListNode dummyHead = new ListNode(0);
+    	dummyHead.next = head;
+    	
+    	return inorderRe(dummyHead, 0, len-1);
+    }
+    
+    private TreeNode inorderRe(ListNode dummyHead, int start, int end){
+    	if(start>end)
+    		return null;
+    	
+    	int mid = start + (end-start)/2;
+    	ListNode cur = dummyHead.next;
+    	
+    //left
+    	TreeNode left = inorderRe(dummyHead, start, mid-1);
+    	
+    //parent, inorder
+    	//cur right now is the root(parent) of left
+    	TreeNode newNode = new TreeNode(cur.val);
+    	newNode.left=left;    	
+    	//move cur to next inorder root
+    	cur=cur.next;
+    	dummyHead.next=cur;
+    	
+    //right
+    	TreeNode right = inorderRe(dummyHead, mid+1, end);
+    	newNode.right=right;
+    	
+    	return newNode;
+    }
+    
+    
+	
+	//nlog(n)
+	public TreeNode sortedListToBST_nlogn(ListNode head) {
 	    if(head==null) return null;
 	    return toBST(head,null);
 	}
@@ -51,4 +96,6 @@ public class Answer {
 	    thead.right = toBST(slow.next,tail);
 	    return thead;
 	}
+	
+
 }
