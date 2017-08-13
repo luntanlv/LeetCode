@@ -35,7 +35,7 @@ public class Answer {
     }
     
     //Post order traversal
-    public void flatten(TreeNode root) {
+    public void flatten_re(TreeNode root) {
         if (root == null) return;
         
         TreeNode left = root.left;
