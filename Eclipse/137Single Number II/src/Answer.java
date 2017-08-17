@@ -13,6 +13,9 @@ public class Answer {
     	return singleNumber_straightforwardversion(nums, 4);
     }
 	
+    //https://discuss.leetcode.com/topic/43166/java-o-n-easy-to-understand-solution-easily-extended-to-any-times-of-occurance
+    //Same idea, less space
+    
 	//for General k times
     public int singleNumber_straightforwardversion(int[] nums, int k) {
     	//for 32 bits integers, I create 1 counter for each bit, each counter is a integer
