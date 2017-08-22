@@ -3,10 +3,11 @@ public class Answer {
 	public static void main(String [] args)
 	{
         Answer answer = new Answer(); 
-        char[][] input = {"01101".toCharArray(),"11010".toCharArray(),"01110".toCharArray(), "11110".toCharArray(),"11111".toCharArray(),"00000".toCharArray()};
+        //char[][] input = {"01101".toCharArray(),"11010".toCharArray(),"01110".toCharArray(), "11110".toCharArray(),"11111".toCharArray(),"00000".toCharArray()};
+        char[][] input = {"11".toCharArray()};
         //List<Integer> res = answer.spiralOrder(input);
         //System.out.println(res);
-        int res = answer.maximalRectangle(input);
+        int res = answer.maximalRectangle_myDP(input);
         System.out.print(res);
 
 	}
@@ -18,6 +19,41 @@ public class Answer {
         return 0;
     }
 	
+    
+    //My Dp
+    public int maximalRectangle_myDP(char[][] matrix) {
+    	int m=matrix.length, n=0;
+    	if(m>0)
+    		n=matrix[0].length;
+    	
+    	if(m==0 || n==0)
+    		return 0;
+    	
+    	int res=0;
+    	//dp[i][j], start from matrix[i][j] the longest 1 it can has all the way to the left
+    	int dp[][] = new int[m][n];
+    	for(int i=0; i<m; i++){
+    		for(int j=0; j<n; j++){
+    			if(matrix[i][j]=='1'){
+    				dp[i][j]=j-1>=0? dp[i][j-1]+1: 1;
+    			}
+    			else
+    				dp[i][j]=0;
+    			
+    			int len=Integer.MAX_VALUE;
+    			for(int k=i; k>=0; k--){
+    				if(dp[k][j]==0)
+    					break;
+    				len=Math.min(len, dp[k][j]);
+    				res = Math.max(res, len*(i-k+1));
+    			}
+    			
+    		}
+    	}
+    	
+    	return res;
+    }
+    
 	//I saw the solution
 	//dp
 	//Realy hard to understand
