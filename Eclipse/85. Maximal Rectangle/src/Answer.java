@@ -3,11 +3,11 @@ public class Answer {
 	public static void main(String [] args)
 	{
         Answer answer = new Answer(); 
-        //char[][] input = {"01101".toCharArray(),"11010".toCharArray(),"01110".toCharArray(), "11110".toCharArray(),"11111".toCharArray(),"00000".toCharArray()};
-        char[][] input = {"11".toCharArray()};
+        char[][] input = {"01101".toCharArray(),"11010".toCharArray(),"01110".toCharArray(), "11110".toCharArray(),"11111".toCharArray(),"00000".toCharArray()};
+        //char[][] input = {"11".toCharArray()};
         //List<Integer> res = answer.spiralOrder(input);
         //System.out.println(res);
-        int res = answer.maximalRectangle_myDP(input);
+        int res = answer.maximalRectangle(input);
         System.out.print(res);
 
 	}
