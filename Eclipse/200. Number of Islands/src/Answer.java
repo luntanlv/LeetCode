@@ -69,6 +69,7 @@ public class Answer {
     }
     
 	//Second solution Union Find
+    //http://blog.csdn.net/dm_vincent/article/details/7655764
     public int numIslands(char[][] grid) {
     	int m=grid.length, n=0;
     	if(m>0)

@@ -32,6 +32,8 @@ public class Answer {
     }	
 	
 	//Using Cyclic Replacements
+    //Solution 1
+    //https://discuss.leetcode.com/topic/11349/my-three-way-to-solve-this-problem-the-first-way-is-interesting-java
     public void rotate_cyclic(int[] nums, int k) {
     	int n = nums.length;
     	k = k % n;
