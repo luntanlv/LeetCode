@@ -16,7 +16,8 @@ public class Answer {
         int m = matrix.length, n=0;
         if(m>0)
         	n=matrix[0].length;
-        	
+        
+        //dp(i,j) represents the side length of the maximum square whose bottom right corner is the cell with index (i,j) in the original matrix.
         int[][] dp = new int[m][n];
         int res=0;
         
@@ -48,6 +49,7 @@ public class Answer {
     //dp[i][j]=min(dp[i-1][j], dp[i][[j-1], dp[i-1][j-1])+1
     public int maximalSquare_better(char[][] matrix) {
         int rows = matrix.length, cols = rows > 0 ? matrix[0].length : 0;
+        //dp(i,j) represents the side length of the maximum square whose bottom right corner is the cell with index (i,j) in the original matrix.
         int[][] dp = new int[rows + 1][cols + 1];
         int maxsqlen = 0;
         for (int i = 1; i <= rows; i++) {

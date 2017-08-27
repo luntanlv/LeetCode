@@ -40,11 +40,11 @@ public class Answer {
 	//252
     public boolean canAttendMeetings(Interval[] intervals) {
         Arrays.sort(intervals, (a,b)-> a.start-b.start);
-        int maxEnd = Integer.MIN_VALUE;
+        int preEnd = Integer.MIN_VALUE;
         for(Interval cur : intervals){
-        	if(cur.start<maxEnd)
+        	if(cur.start<preEnd)
         		return false;
-        	maxEnd = Math.max(maxEnd, cur.end);
+            preEnd = cur.end;
         }
         return true;
     }

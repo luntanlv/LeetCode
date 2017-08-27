@@ -1,7 +1,8 @@
-import java.awt.List;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -11,9 +12,16 @@ public class Answer {
         Answer answer = new Answer();
         //int[][] input = new int[][]{{2,9,10},{3,7,15},{5,12,12},{15,20,10},{19,24,8}};
         //int[][] input = new int[][]{{0,2,3},{2,5,3}};
-        int[][] input = new int[][]{{1,2,1},{1,2,2},{1,2,3}};
-        ArrayList<int[]> res =answer.getSkyline(input);
-        System.out.println(res);       
+        //int[][] input = new int[][]{{1,2,1},{1,2,2},{1,2,3}};
+        int[][] input = new int[][]{{0,2147483647,2147483647}};
+        List<int[]> res =answer.getSkyline_my(input);
+        
+        for(int[] point: res){
+        	for(int x: point)
+        		System.out.print(x+", ");
+        	System.out.println("");        	
+        }
+
 	}
 	
 	//like 58 https://leetcode.com/problems/merge-intervals/#/description\
@@ -123,6 +131,67 @@ public class Answer {
     		
     	}
     	return result;
+    }
+    
+    //Second round my solution
+    //will fall on {0,2147483647,2147483647}
+    //similar idea to 42. Trapping Rain Water  84. Largest Rectangle in Histogram
+    public List<int[]> getSkyline_my(int[][] buildings) {
+    	ArrayList<int[]> res = new ArrayList<int[]>();
+    	
+    	PriorityQueue<int[]> rightQ = new PriorityQueue<>((a1,a2)->a1[1]-a2[1]);
+    	PriorityQueue<int[]> heightQ = new PriorityQueue<>((a1,a2)->a2[2]-a1[2]);
+    	
+    	//will fall on {0,2147483647,2147483647}
+    	int[] zeroH = new int[]{Integer.MIN_VALUE, Integer.MAX_VALUE, 0};
+		rightQ.add(zeroH);
+		heightQ.add(zeroH);
+    	
+    	for(int[] building : buildings){
+    		
+    		while(!rightQ.isEmpty() && rightQ.peek()[1]<building[0]){
+    			int[] highestBefereEndB = heightQ.peek();
+    			int[] endB = rightQ.poll();
+    			heightQ.remove(endB);
+    			int[] highestAfterEndB = heightQ.peek();
+    			
+    			if(highestBefereEndB[2] != highestAfterEndB[2]){
+    				int[] resPoint = new int[]{endB[1], highestAfterEndB[2]};
+    				if(!res.isEmpty() && res.get(res.size()-1)[0] == resPoint[0])
+    					res.remove(res.size()-1);
+    				res.add(resPoint);
+    			}
+    		}
+
+    		int[] preHB = heightQ.peek();
+    		
+			rightQ.add(building);
+			heightQ.add(building);
+			
+			if(preHB[2]<heightQ.peek()[2]){
+				int[] resPoint = new int[]{heightQ.peek()[0], heightQ.peek()[2]};
+				if(!res.isEmpty() && res.get(res.size()-1)[0] == resPoint[0])
+					res.remove(res.size()-1);
+				res.add(resPoint);
+			}
+
+    	}
+    	
+		while(rightQ.size()>1){
+			int[] highestBefereEndB = heightQ.peek();
+			int[] endB = rightQ.poll();
+			heightQ.remove(endB);
+			int[] highestAfterEndB = heightQ.peek();
+			
+			if(highestBefereEndB[2] != highestAfterEndB[2]){
+				int[] resPoint = new int[]{endB[1], highestAfterEndB[2]};
+				if(!res.isEmpty() && res.get(res.size()-1)[0] == resPoint[0])
+					res.remove(res.size()-1);
+				res.add(resPoint);
+			}
+		}
+		
+		return res;
     }
     
 }
