@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class Answer {
 	public static void main(String [] args)
@@ -6,9 +7,36 @@ public class Answer {
         Answer answer = new Answer();
         //int[][] input = new int[][]{{1,2},{3,4},{5,6},{7,8}};
         int[][] input = new int[][]{{10,16}, {2,8}, {1,6}, {7,12}};
-        int res =answer.findMinArrowShots(input);
+        int res =answer.findMinArrowShots_my(input);
         System.out.println(res);       
 	}
+	
+	//Second round
+	//My Solution
+    public int findMinArrowShots_my(int[][] points) {
+    	if(points.length ==0)
+    		return 0;
+    	
+    	Arrays.sort(points, (a, b)-> a[0]-b[0]);
+    	PriorityQueue<Integer> heap = new PriorityQueue<>();
+    	int count =0;
+    	 
+    	for(int i=0; i<points.length; i++){
+    		if(heap.isEmpty()|| points[i][0]<=heap.peek()){
+    			heap.add(points[i][1]);
+    		}
+    		else{
+    			count++;
+    			heap.clear();
+    			heap.add(points[i][1]);
+    		}
+    	}
+    	if(!heap.isEmpty())
+    		count++;
+    	
+    	return count;
+    }
+	
 
 	//I saw the solution
 	
