@@ -23,13 +23,15 @@ public class Answer {
 	
 	//XOR solution
 	//https://discuss.leetcode.com/topic/24535/4-line-simple-java-bit-manipulate-solution-with-explaination
-    public int missingNumber(int[] nums) {
-        int sum = 0;
-        for(int num: nums)
-            sum += num;
-            
-        return (nums.length * (nums.length + 1) )/ 2 - sum;
-    }
+	public int missingNumber(int[] nums) {
+
+	    int xor = 0, i = 0;
+		for (i = 0; i < nums.length; i++) {
+			xor = xor ^ i ^ nums[i];
+		}
+
+		return xor ^ i;
+	}
 	
 	//My solution
     public int missingNumber_swap(int[] nums) {
