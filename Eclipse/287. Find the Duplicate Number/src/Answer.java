@@ -10,6 +10,17 @@ public class Answer {
         	System.out.print(v+", ");       
 	}
 	
+	//Range binary search
+	//https://discuss.leetcode.com/topic/25580/two-solutions-with-explanation-o-nlog-n-and-o-n-time-o-1-space-without-changing-the-input-array
+    public int findDuplicate_BS(int[] nums) {
+        int n = nums.length-1;
+        int l = 1, h = n;
+        
+        while(){
+        	int m = (l+h)/2;
+        }
+    }
+	
 	//I saw the solution
 	//https://leetcode.com/problems/linked-list-cycle-ii/#/description
     public int findDuplicate(int[] nums) {
