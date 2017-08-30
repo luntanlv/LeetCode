@@ -16,9 +16,23 @@ public class Answer {
         int n = nums.length-1;
         int l = 1, h = n;
         
-        while(){
+        while(l<h){
         	int m = (l+h)/2;
+        	int lessOrEqualThanMid = 0;
+        	for(int num: nums){
+        		if(num<=m)
+        			lessOrEqualThanMid++;
+        	}
+        	
+        	if(lessOrEqualThanMid>m){
+        		h=m;
+        	}
+        	else{
+        		l=m+1;
+        	}
         }
+        
+        return l;
     }
 	
 	//I saw the solution
