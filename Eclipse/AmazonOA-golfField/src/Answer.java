@@ -15,6 +15,7 @@ public class Answer {
 	//http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=289918&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption%5B3046%5D%5Bvalue%5D%3D5%26searchoption%5B3046%5D%5Btype%5D%3Dradio%26sortid%3D311
 	//http://www.1point3acres.com/bbs/thread-288537-1-1.html
 	/*
+	 *	起始点可以从field的四个角选取，所以要选取不同起始点下步数最小的返回
 	 * 第二题,golf event 要砍树。。。每次只能砍所有树里面最矮的那颗。其实就是 maze 题的变形。2D-array. 0 不能走,
 		1 可以走,>1 就是树,要求的输出就是从原点开始,走到每颗当前树里面最矮的那颗所需的步数+需要砍得树的高度
 		的总和。方法我就是先找好所有的树,排好序,然后从一个点到另一个点做 BFS。 找出最小步数。
