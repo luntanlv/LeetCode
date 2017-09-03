@@ -50,6 +50,15 @@ public class Answer {
         	System.out.println(mov.id);
 	}
 	
+	//http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=244701&extra=page%3D2%26filter%3Dsortid%26sortid%3D311%26searchoption%5B3089%5D%5Bvalue%5D%5B5%5D%3D5%26searchoption%5B3089%5D%5Btype%5D%3Dcheckbox%26searchoption%5B3046%5D%5Bvalue%5D%3D5%26searchoption%5B3046%5D%5Btype%5D%3Dradio%26sortid%
+	/*
+	 * 第二题是在 Movie network 里寻找 N 个分数最高的 Movie,
+		第二题是给一个 movie,每个 movie 有 id,rating 和一个 list of neighbors,
+		让你从这个 movie 开始,找到 similar 的 top k rating movie,不包括这个 movie。
+		用 bfs 遍历这个图,然后再用一个 minHeap,每次分两种情况,如果 minHeap.size()== k,
+		那就看是不是比 peek 的 rating 大,如果大就扔出来一个把这个新的放进去。如果 minHeap.size() < k
+		,就放进去。最后结果就在 minHeap 里面。
+	 */
 	List<Movie> find(Movie movie, int k){
 		List<Movie> res = new ArrayList<>();
 		if(movie==null)

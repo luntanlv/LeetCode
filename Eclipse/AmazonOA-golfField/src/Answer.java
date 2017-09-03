@@ -14,6 +14,13 @@ public class Answer {
 	
 	//http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=289918&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption%5B3046%5D%5Bvalue%5D%3D5%26searchoption%5B3046%5D%5Btype%5D%3Dradio%26sortid%3D311
 	//http://www.1point3acres.com/bbs/thread-288537-1-1.html
+	/*
+	 * 第二题,golf event 要砍树。。。每次只能砍所有树里面最矮的那颗。其实就是 maze 题的变形。2D-array. 0 不能走,
+		1 可以走,>1 就是树,要求的输出就是从原点开始,走到每颗当前树里面最矮的那颗所需的步数+需要砍得树的高度
+		的总和。方法我就是先找好所有的树,排好序,然后从一个点到另一个点做 BFS。 找出最小步数。
+		举个例子 [[1,1,0,2],[3,1,1,1]], 从(0,0)走到 (0,3)--》2 这棵树,就是 5 步+2(树高),然后从(0,3)
+		走到 (1,0)->3 这棵树 4 步+3(树高)所以 5+2+4+3 返回 14
+	 */
 	public int flatFields (int[][] fields) {
         // corner case
         if (fields == null || fields.length == 0 || fields[0].length == 0) return 0;

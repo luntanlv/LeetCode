@@ -6,6 +6,13 @@ public class Answer {
     	TreeNode(int x) { val = x; }
     }
 	
+    /*
+     * Given a list of unique integers, construct the binary tree by given order without rebalancing, then find out the distance between two nodes.
+     * 给一个数组 A[5,6,3,1,2,4],先建立 BST,然后搜索两个 node 之间的距离。
+		已知第一个元素 5 是 root,剩下的是无序的!!注意后面有可能是右子树先出现(6,对应 root-5),
+		也有可能是左子树先出现(1,2,对应 root-3)!
+		如果有 node 不存在的话,返回-1;
+     */
 	public static void main(String [] args)
 	{
         Answer answer = new Answer();

@@ -19,6 +19,9 @@ public class Answer {
         	System.out.println(item[0]+", "+item[1]);
 	}
 	
+	/*
+	 * amazon warehouse。。。其实就是给你 x,y 然后算 x,y 到原点的距离,输出最小的几个,java 应该priorityqueue 就够了
+	 */
 	public List<int[]> topKPoint(List<int[]> points, int k){
 		if(k>=points.size())
 			return points;
