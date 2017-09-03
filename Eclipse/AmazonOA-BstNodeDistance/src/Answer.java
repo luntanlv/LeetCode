@@ -28,8 +28,8 @@ public class Answer {
 		
 		//Build BST
 		TreeNode root = createBst(values);
-		int l1=pathLen(root, node1);
-		int l2=pathLen(root, node2);
+		int l1=pathLength(root, node1);
+		int l2=pathLength(root, node2);
 		int cl=lowestComAn(root, node1, node2);
 		return l1<0||l2<0||cl<0? -1 : l1+l2-2*cl;
 		
@@ -77,39 +77,39 @@ public class Answer {
 		}
 	}
 	
-	public int pathLen(TreeNode root, int tar){
+	public int pathLength(TreeNode root, int tar){
 		TreeNode cur = root;
-		int count=0;
+		int step=0;
 		while(cur!=null){
 			if(cur.val==tar)
-				return count;
+				return step;
 			
 			if(tar<cur.val)
 				cur=cur.left;
 			else
 				cur=cur.right;
 			
-			count++;				
+			step++;				
 		}
 		return -1;
 	}
 	
 	public int lowestComAn(TreeNode root, int node1, int node2){
-		int count=0;
-		TreeNode cur = root;
-		while(cur!=null){
-			if(node1<cur.val && node2<cur.val){
-				cur=cur.left;
-				count++;
+		int step=0;
+		TreeNode curNode = root;
+		while(curNode!=null){
+			if(node1<curNode.val && node2<curNode.val){
+				curNode=curNode.left;
+				step++;
 			}
-			else if(node1>cur.val && node2>cur.val){
-				cur=cur.right;
-				count++;
+			else if(node1>curNode.val && node2>curNode.val){
+				curNode=curNode.right;
+				step++;
 			}
 			else
 				break;		
 		}
-		return count;
+		return step;
 		
 	}
 }
