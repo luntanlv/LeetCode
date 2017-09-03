@@ -9,13 +9,14 @@ public class Answer {
 	public static void main(String [] args)
 	{
         Answer answer = new Answer();
-        int[] input = new int[]{5,6,3,1,2,4};
-        int res = answer.bstDistance(input, 5,5);
+        //int[] input = new int[]{5,6,3,1,2,4};
+        int[] input = new int[]{5};
+        int res = answer.bstDistance(input, 5,1);
         System.out.println(res);
 	}
 	
 	public int bstDistance(int[] values, int node1, int node2){
-		if(values.length<2)
+		if(values.length<1)
 			return -1;
 		
 		//Build BST
