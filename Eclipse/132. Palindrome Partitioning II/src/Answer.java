@@ -9,6 +9,7 @@ public class Answer {
 	}
 	
 	//similar to 5.Longest Palindromic Substring;
+	//这道其实是两道dp题的合体， 先求出isPal[i][j], 然后根据isPal 求 minCut[i].  minCut[i]: min cut for s.subString(i,n)
 	//I saw the solution
     public int minCut(String s) {
     	int n=s.length();

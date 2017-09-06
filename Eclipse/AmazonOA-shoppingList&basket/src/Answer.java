@@ -6,6 +6,7 @@ public class Answer {
 	public static void main(String [] args)
 	{
         Answer answer = new Answer();
+        //List<String> sl3 = Arrays.asList(new String[]{"anything"});
         List<String> sl1 = Arrays.asList(new String[]{"orange", "apple"});
         List<String> sl2 = Arrays.asList(new String[]{"orange", "anything", "orange"});
         
@@ -13,6 +14,7 @@ public class Answer {
         List<String> sl5 =  new ArrayList<>();
         
         List<List<String>> sl =  new ArrayList<List<String>>();
+        //sl.add(sl3);
         sl.add(sl1);
         sl.add(sl2);
         
