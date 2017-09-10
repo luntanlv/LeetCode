@@ -4,8 +4,8 @@ public class Answer {
 	{
         Answer answer = new Answer();      
         //int[] input = new int[]{3, 0, 6, 1, 5};
-        int[] input = new int[]{1};
-        int res = answer.hIndex(input);
+        int[] input = new int[]{100};
+        int res = answer.hIndex_275(input);
         
         System.out.println(res);         
 	}
@@ -33,5 +33,29 @@ public class Answer {
         		return i;
         }
         return 0;
+    }
+    
+    
+    //275
+    //Hard to understand boarder case
+    public int hIndex_275(int[] citations) {
+        int len = citations.length;
+        int lo = 0, hi = len - 1;
+        while (lo < hi) {
+            int med = (hi + lo) / 2;
+            if (citations[med] == len - med) {
+                return len - med;
+            } else if (citations[med] < len - med) {
+                lo = med + 1;
+            } else { 
+                //(citations[med] > len-med), med qualified as a hIndex,
+                // but we have to continue to search for a higher one.
+                hi = med - 1;
+            }
+        }        
+        //lo==hi
+        //check the if citations[lo] is a valid res, if it is not, we cannot include it.
+        //like [0]
+        return citations[lo]<len-lo? len-lo-1: len-lo;
     }
 }
