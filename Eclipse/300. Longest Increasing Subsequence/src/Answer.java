@@ -10,6 +10,7 @@ public class Answer {
 	
 	//O(nlogn)
 	//https://discuss.leetcode.com/topic/28738/java-python-binary-search-o-nlogn-time-with-explanation
+    //http://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/
 	
 	//O(n^2)
     public int lengthOfLIS(int[] nums) {
