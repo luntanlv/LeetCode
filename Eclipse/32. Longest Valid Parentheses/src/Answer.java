@@ -78,24 +78,27 @@ public class Answer {
         return res;
     }
     
-    //stack 2
-    //store last invalid index in stack, so we can calculate the length
-    public int longestValidParentheses_st(String s) {
-        int maxans = 0;
-        Stack<Integer> stack = new Stack<>();
-        stack.push(-1);
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(') {
+    //Stack2
+    //I saw the slolution
+    public int longestValidParentheses_st2(String s) {
+    int maxans = 0;
+    Stack<Integer> stack = new Stack<>();
+    //need last invalid index to caluclute the length since last invalid
+    stack.push(-1);
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == '(') {
+            stack.push(i);
+        } else {
+            stack.pop();
+            if (stack.empty()) {
+                //need last invalid index to caluclute the length since last invalid, pust i as last invalid index
+                    //For eample, )()())£¬ need to push 0 as last invalid index, so we can get valid length by 4-0=4
                 stack.push(i);
             } else {
-                stack.pop();
-                if (stack.empty()) {
-                    stack.push(i);
-                } else {
-                    maxans = Math.max(maxans, i - stack.peek());
-                }
+                maxans = Math.max(maxans, i - stack.peek());
             }
         }
+    }
         return maxans;
     }
     
