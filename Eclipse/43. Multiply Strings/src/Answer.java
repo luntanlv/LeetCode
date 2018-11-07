@@ -10,6 +10,7 @@ public class Answer {
 	}
 	
 	//I saw the solution
+	//https://leetcode.com/problems/multiply-strings/discuss/17605/Easiest-JAVA-Solution-with-Graph-Explanation
     public String multiply(String num1, String num2) {
         char[] c1 = num1.toCharArray();
         char[] c2 = num2.toCharArray();
